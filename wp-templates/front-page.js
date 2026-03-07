@@ -38,7 +38,7 @@ export default function FrontPage(props) {
       />
 
       <main className="container">
-        <EntryHeader title="Welcome to the Faust Scaffold Blueprint" />
+        <EntryHeader title="Welcome to Hell" />
 
         <section className={style.cardGrid}>
           <Link
