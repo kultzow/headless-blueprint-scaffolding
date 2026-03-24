@@ -1,0 +1,1275 @@
+/* CSS Document */
+
+.admin-card-wrapper {
+	display:flex;
+	column-gap:40px;
+	justify-content: center;
+    align-items: center;
+}
+
+.admin-card-tools {
+	width: 100%;
+}
+
+.card-faces {
+	display:flex;
+    width: 100%;
+    justify-content: center;
+    gap: 20px;
+}
+
+@media (max-width:767px) {
+	
+.card-faces {
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+}
+
+.admin-card-tools textarea {
+	margin-bottom:20px;
+}
+
+.proxy-card p {
+	margin-block-start: 0px;
+	margin-block-end: 0px;
+}
+
+.preview-card {
+	position: relative;
+	display:inline-block;
+	width:270px;
+	height:380px;
+	overflow:hidden;
+	border-radius:10px;
+    box-shadow: 0 0 10px rgb(0 0 0 / 50%);
+	cursor:pointer;
+}
+
+
+.card-tools {
+	padding:0 10px;
+	max-width: 300px;
+}
+
+
+.preview-card .admin-only {
+	position: absolute;
+	z-index: 99;
+	font-size:2em;
+	top:40px;
+	left:40px;
+	text-shadow: 0 0 10px black;
+	color:#fff;
+	font-weight: bold;
+}
+
+.preview-card .card-container {
+	transform-origin: top left;
+	transform: scale(0.3725);
+	margin:-10px;
+	background:url(/card_layout/card-skeleton.png);
+	background-size:cover;
+}
+
+
+.card-container {
+	font-family: 'Roboto Slab';
+    width: 782px; 
+    height: 1076px; 
+	margin:auto;
+	text-align: left;
+	position: relative;
+    box-sizing: border-box;
+}
+
+
+ .card-image {
+	 background:top center no-repeat;
+	 background-size:685px;
+	 background-size:cover;
+    height: 626px;
+    width: 646px;
+	 position: relative;
+	 top:0px;
+    z-index: 3;
+	border-radius:0 0 90px 90px;
+    margin: auto;
+    border: 5px gold solid;
+	 border-top:none;
+}
+
+
+
+/*
+.color-gold .card-image {
+	border-color:#fff;
+}
+*/
+
+
+
+.card-header {
+	 position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 4;
+    width: 100%;
+    padding: 56px 90px 0px;
+	height:158px;
+    background: url('/card_layout/card-header-bg.png') top center repeat-x;
+    display: flex;
+	align-items: flex-start;
+}
+
+.two-sided {
+    color: #fff;
+    position: absolute;
+    left: 50px;
+    top: 53px;
+	font-size: 2.65em;
+    background: #000;
+    border-radius: 100%;
+	z-index: 93;
+}
+
+.name {
+	color:#fff;
+    font-size: 2em;
+	line-height: 1em;
+    font-weight: 600;
+    margin-right: auto;
+	text-shadow: 0px 0px 5px rgba(0,0,0,1);
+}
+
+.name.flavored {
+    position: relative;
+	top:15px;
+}
+
+.name.inset {
+    position: relative;
+    padding-left: 10px;
+}
+
+.emblem .name,
+.double_faced_token .name,
+.token .name {
+	text-align: center;
+	width:100%;
+}
+
+
+
+.mana-costs {
+    margin-right: 0px;
+    display: flex;
+	font-size:30px;
+}
+
+.double_faced_token .mana-costs,
+.token .mana-costs {
+	display:none; 
+}
+
+.mana-costs i {
+	margin-left:7px;
+}
+
+.type-line {
+	font-size:1em;
+	text-align:center;
+	position: absolute;
+	width:100%;
+	top:599px;
+	z-index: 3;
+}
+
+
+.type {
+    font-size: 1.5em;
+	line-height: 1em;
+    align-self: center;
+    margin-right: auto;
+	padding:7px 20px 8px;
+	display:inline-block;
+	margin:auto;
+	position: relative;
+	border-radius:30px ;
+	background:#222;
+	border:5px gold solid;
+	font-family: "Roboto", sans-serif;
+	color:#fff;
+}
+
+.legendary .type {
+	background:#fff7b8;
+	color:#222;
+}
+
+[data-name="Forest"] .card-image,
+[data-name="Forest"] .type {
+	border:5px var(--green) solid;
+}
+[data-name="Mountain"] .card-image,
+[data-name="Mountain"] .type {
+	border:5px var(--red) solid;
+}
+[data-name="Island"] .card-image,
+[data-name="Island"] .type {
+	border:5px var(--blue) solid;
+}
+[data-name="Plains"] .card-image,
+[data-name="Plains"] .type {
+	border:5px var(--white) solid;
+}
+[data-name="Swamp"] .card-image,
+[data-name="Swamp"] .type {
+	border:5px var(--purple) solid;
+}
+
+
+.frame {
+	position: absolute;
+	top:580px;
+	left:0px;
+	width:100%;
+	z-index: 2;
+}
+
+
+.frame-text-wrapper {
+    background: rgba(0,0,0,.6);
+	color:#fff;
+	margin:0 55px 10px;
+    padding:100px 85px 5px;
+    padding: 75px 60px 5px 70px;
+    height: 465px;
+	position: relative;
+	z-index: 2;
+	color:#000;
+	background:url('/card_layout/scroll_2.png?4') bottom center no-repeat;
+	background-size:cover;
+}
+
+
+.frame-text-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;  
+	width:100%;
+    height: 325px;
+	position: relative;
+	z-index: 2;
+}
+
+.text > div {
+	line-height: 1.3em;
+}
+
+em {
+    font-size: .8em;
+    line-height: 1.2em;
+    font-style: italic;
+	font-weight: 300;
+}
+
+.ticket-count {
+	padding-right:1.5em;
+}
+.ticket {
+	position:absolute;
+	transform:rotate(-45deg) translateY(-1em) translateX(-1em);
+}
+
+.text .ms-cost {
+    font-size: .7em;
+	line-height: 1.35em;
+    position: relative;
+    margin-right: 2px;
+	top:-2px;
+    border: 2px #999 solid;
+    width: 1.5em;
+    height: 1.5em;
+}
+
+.card-header .ms-cost.ms-c,
+.text .ms-cost.ms-c {
+	line-height:1.4em;
+}
+
+.text p {
+    margin-bottom: 15px;
+	line-height: 1.1em;
+}
+
+
+p.modal-text {
+	display:inline-block;
+	padding:3px 10px !important;
+	background:#fff !important;
+	border:none !important;
+    color: #000;
+    border-radius: 45px;
+    position: absolute;
+    left: -60px;
+	bottom:-57px;
+	white-space: nowrap;
+	font-size:24px;
+	line-height: 1em;
+}
+
+
+.card-container:not(.adventure) .magnify {
+    font-size: 48px !important;
+    line-height: 48px !important;
+    text-align: center;
+    position: relative;
+    left: -5px;
+}
+
+.frame .adventure {
+	font-size:27px;
+	line-height:30px;
+    width: calc(100% + 30px);
+	display:inline-block;
+	color:#fff;
+	border-radius: 0 0 20px 20px;
+	padding:250px 15px 5px 20px;
+	margin:-255px -15px 10px;
+background: rgba(0,0,0,0.5);
+	border:5px gold solid;
+	position: relative;
+}
+
+.card-container.adventure .frame p {
+	margin-bottom:10px !important;
+}
+
+.frame .adventure::before {    
+	content: "ADVENTURE";
+    position: absolute;
+    font-size: 19px;
+    right: 16px;
+    bottom: -23px;
+    color: #555;
+    background: gold;
+    font-weight: bold;
+    padding: 0 7px;
+    border-radius: 10px 10px;
+    font-family: 'Roboto';
+}
+
+
+.frame .adventure.omen::before {    
+	content: "OMEN";
+}
+
+.frame .adventure p {
+	color:#fff;
+	z-index: 99;
+	position: relative;
+}
+.frame .adventure p:first-child {
+	font-size:32px;
+}
+
+.adventure .frame-text-box {
+	height:165px;
+}
+
+.frame .adventure .ms-cost {
+    font-size: 20px;
+    position: relative;
+    margin-right: 5px;
+    top: -2px;
+    width: 1.35em;
+    height: 1.35em;
+}
+
+.frame .adventure em {
+	display:none;
+}
+
+.planeswalker p {
+	position: relative;
+}
+
+.text i.ms + i.ms {
+	margin-left:5px;
+}
+
+.stats {
+	position: absolute;
+	right:60px;
+	bottom:40px;
+	display:block;
+	padding:5px 12px 8px 15px;
+	font-size:2.75em;
+	line-height: 1em;
+	letter-spacing: 3px;
+	z-index: 9;
+	border-radius:20px;
+	background:#222;
+	color:#fff;
+	border:5px gold solid;
+	text-align: center;
+}
+/*
+.stats .power {
+	position:relative;
+	top:-4px;
+	left:-2px;
+}
+.stats .toughness {
+	position:relative;
+	top:4px;
+	left:2px;
+}
+*/
+
+.mutate .frame p:nth-of-type(1) {
+	border-top:1px #333 solid;
+	border-bottom:1px #333 solid;
+	padding:10px;
+	background:rgba(0,0,0,.1);
+	font-size:33px;
+	line-height:1em;
+}
+.mutate .frame p:nth-of-type(1) em {
+	display:none;
+}
+
+.prototype .frame p:nth-of-type(1) {
+	border-top:1px #333 solid;
+	border-bottom:1px #333 solid;
+	padding:10px;
+	background:rgba(0,0,0,.1);
+	font-size:33px;
+	line-height:1em;
+}
+.prototype .frame p:nth-of-type(1) em {
+	display:none;
+}
+
+
+.planeswalker .frame p:nth-of-type(even) {
+	border-top:1px #333 solid;
+	border-bottom:1px #333 solid;
+	padding:10px;
+	background:rgba(0,0,0,.1);
+}
+
+.planeswalker .frame p:last-child {
+	border-bottom:0px !important;
+}
+
+
+.planeswalker .card-image {
+	height:530px;
+    background-position: top center;
+    background-size: cover;
+}
+
+.planeswalker .type-line {
+	top:503px;
+}
+.planeswalker .frame {
+	top:460px;
+}
+
+.planeswalker .shadow-wrapper {
+	top:-100px;
+	bottom:100px;
+}
+
+.planeswalker .frame-text-wrapper {
+	height:585px;
+}
+
+.planeswalker .frame-text-box {
+	padding-top:20px;
+	height:465px;
+}
+
+
+
+.saga .card-image {
+	height:525px;
+	background-position:center;
+	background-size:cover;
+}
+
+.saga .type-line {
+	top:499px;
+}
+.saga .frame {
+	top:455px;
+}
+
+.saga .shadow-wrapper {
+	top:-100px;
+	bottom:100px;
+}
+
+.saga .frame-text-wrapper {
+	height:585px;
+}
+
+.saga .frame-text-box {
+	height:425px;
+}
+
+
+.saga .frame p:nth-of-type(even) {
+	border-top:1px #333 solid;
+	border-bottom:1px #333 solid;
+	padding:10px;
+	background:rgba(0,0,0,.1);
+}
+.saga-levels {
+	position:absolute;
+	display:block;
+	left:-55px;
+	text-align: center;
+	color:#fff;
+}
+
+.saga-level {
+	display:block;
+	background:#fff;
+	color:#000;
+	padding:4px 0 3px;
+	border-radius:5px;
+	width:45px;
+	margin-bottom:5px;
+	font-size:30px;
+	line-height:30px;
+}
+
+.saga-levels:nth-of-type(even) .saga-level {
+	
+	background:#000;
+	color:#fff;
+}
+.saga-levels:nth-of-type(even){
+	margin-top:-10px;
+}
+.saga-levels:last-of-type {
+	margin-top:30px;
+}
+
+
+
+.saga-separator {
+	display:block;
+	margin:-15px 0 -5px;
+}
+
+.leveler .frame-text-wrapper {
+	position:relative;
+	padding:100px 120px 5px 110px;
+}
+
+.saga .frame-text-wrapper {
+	padding:100px 75px 5px;
+}
+
+
+.leveler .stats {
+	bottom:322px;
+}
+
+
+.leveler .frame p:nth-of-type(1) {
+	border-top:1px #333 solid;
+	border-bottom:1px #333 solid;
+	padding:10px;
+	background:rgba(0,0,0,.1);
+	font-size:33px;
+	line-height:1em;
+}
+
+.leveler .frame  p:nth-of-type(1) em {
+	display:none;
+}
+
+.leveler .frame  p:nth-of-type(2),
+.leveler .frame  p:nth-of-type(5)
+{
+	display:block;
+	position: absolute;
+	left:-100px;
+	font-size:33px;
+	line-height: 1em;
+	background:#fff;
+	border-radius:5px;
+	padding:10px;
+	text-align: center;
+	width:80px;
+}
+
+
+.leveler .frame  p:nth-of-type(4) {
+	min-height:80px;
+}
+
+
+.leveler .frame  p:nth-of-type(7) {
+	border-top:1px #333 solid;
+	border-bottom:1px #333 solid;
+	padding:10px;
+	background:rgba(0,0,0,.1);
+	min-height:80px;
+}
+
+
+
+.leveler .frame  p:nth-of-type(3),
+.leveler .frame  p:nth-of-type(6)
+{
+	position: absolute;
+	right:-115px;
+	display:block;
+	padding:8px 12px 11px 15px;
+	font-size:44px;
+	letter-spacing: 3px;
+	z-index: 9;
+	border-radius:20px;
+	background:#222;
+	color:#fff;
+	border:5px gold solid;
+	text-align: center;
+	margin-top:5px;
+}
+
+.station .text p {
+	width:100%;
+}
+
+
+.station .station-level {
+	position:relative;
+	padding:10px 35px 0px 15px;
+}
+
+.station .station-level:nth-of-type(odd) {   
+	border-top: 1px #333 solid;
+    border-bottom: 1px #333 solid;
+    background: rgba(0, 0, 0, .1);
+}
+
+
+.station p.population {
+	display:block;
+	position: absolute;
+	left:-70px;
+	font-size:33px;
+	background:#333;
+	color:#fff;
+	border-radius:5px 0 0 5px;
+	padding:10px;
+	text-align: center;
+	width:70px;
+}
+
+.station p.stats {
+	position: absolute;
+	right:-80px;
+	bottom:-20px;
+	display:block;
+	padding:8px 12px 11px 15px;
+	font-size:44px;
+	letter-spacing: 3px;
+	z-index: 9;
+	border-radius:20px;
+	background:#222;
+	color:#fff;
+	border:5px gold solid;
+	text-align: center;
+	width:auto;
+	margin-bottom:0px;
+}
+
+
+
+.class .frame-text-wrapper {
+	position:relative;
+	padding:100px 55px 5px 120px;
+}
+
+.class .frame  p:nth-of-type(1) {
+	display:none;
+}
+
+
+.class .frame  p:nth-of-type(3),
+.class .frame  p:nth-of-type(5)
+{
+	display:block;
+	position: absolute;
+	left:-110px;
+	font-size:20px;
+	background:#fff;
+	border-radius:5px;
+	padding:10px 5px;
+	text-align: center;
+	width:100px;
+	line-height:1em;
+}
+
+
+.class .frame   p:nth-of-type(3) .ms-cost,
+.class .frame   p:nth-of-type(5) .ms-cost {
+	font-size:.9em;
+	margin-left:0px !important;
+}
+
+.class .frame  p:nth-of-type(4) {
+	min-height:60px;
+	border-top:1px #333 solid;
+	border-bottom:1px #333 solid;
+	padding:10px;
+	background:rgba(0,0,0,.1);
+}
+
+
+.loyalty {
+    position: absolute;
+    left: -75px;
+    border: 3px #fff solid;
+    background: #000;
+	color:#fff;
+	width:65px;
+	text-align:center;
+    font-size: 33px;
+    letter-spacing: 2px;
+    line-height: 1em;
+    padding: 4px 5px 6px;
+    border-radius: 20px;
+}
+
+.loyalty.up {
+	background:#fff;
+	color:#000;
+}
+
+.power.offset {
+	position:relative;
+	top:7px;
+	left:-2px;
+}
+.toughness.offset {
+	position:relative;
+	top:7px;
+	left:2px;
+}
+
+
+.stats.defense-stats,
+.stats.planeswalker-stats {
+	background: #000;
+	color:#fff;
+	font-size:3em;
+	border:4px #fff solid;
+    width: 76px;
+    height: 76px;
+    padding: 7px 15px 8px 15px;
+    border-radius: 50px;
+}
+
+.stats.planeswalker-stats.dungeon-master {
+	font-size:1.5em; 
+	line-height:1em;
+}
+
+.ms-dfc {
+    color: #111;
+    border: 0.05em solid #111;
+    border-radius: 2em;
+    padding: 0.025em;
+    background: #fff;
+    text-shadow: none;
+}
+
+
+
+.ms-loyalty {	
+    position: absolute;
+    left: -24px;
+}
+
+.ms-p::before
+{
+  content: "\e921" !important;
+}
+.ms-p::after
+{
+  content: none !important;
+}
+
+.info {
+	color:#000;
+	opacity: .8;
+	width:100%;
+	text-align: center;
+	display:block;
+	position: absolute;
+	bottom:45px;
+	left:0px;
+	z-index: 1;
+    font-size: 20px;
+	font-family: 'Righteous', sans-serif;
+}
+
+.emblem .info {
+	color:#fff;
+}
+.snow .info {
+	color:#6d7b89 !important;
+}
+
+.color-bg  .info,
+.color-gb  .info,
+.color-ug  .info,
+.color-gu  .info,
+.color-rg  .info,
+.color-gr  .info,
+.color-bu  .info,
+.color-ub  .info,
+.color-ru  .info,
+.color-ur  .info,
+.color-rb  .info,
+.color-br  .info,
+.color-u .info,
+.color-r .info,
+.color-g .info,
+.color-b .info {
+	color:#fff;
+	opacity: .7;
+}
+
+.split-frame {
+    display: block;
+    width: 100%;
+    height: 555px;
+	position: relative;
+}
+
+.split-frame.bottom {
+	position: absolute;
+	bottom:0px;
+	text-align: right;
+	padding-top:30px;
+}
+
+.split-frame.top .card-header {
+    top: 0px;
+    width: 495px;
+    left: 0px;
+    padding: 80px 35px 150px 65px;
+}
+.split-frame.bottom .card-header {
+	bottom:0px;
+	top:auto;
+	right:0px;
+	left:auto;
+    width: 495px;
+	padding:150px 65px 115px 35px;
+	background:linear-gradient(0deg, rgba(0,0,0,.7) 10%, transparent 100%)
+}
+
+.split-frame .card-image {
+	width:500px;
+	height:525px;
+	display:inline-block;
+	vertical-align: top;
+	border-radius:30px 0 30px 0;
+}
+
+.split-frame .frame-text-wrapper {
+    width: 320px;
+    height: 410px;
+    display: inline-block;
+    vertical-align: top;
+    z-index: 1;
+    margin: 0px -35px;
+    position: relative;
+    top: 90px;
+    padding: 20px 30px 20px 55px;
+}
+
+
+.split-frame .subtype {
+    display: block;
+	border:5px gold solid;
+    border-radius: 20px;
+    padding: 3px 5px 5px;
+	background:#222;
+	color:#fff;
+    position: absolute;
+    top: -40px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 200px;
+	left:10px;
+	font-size:24px;
+}
+.split-frame.bottom .frame-text-wrapper {
+	
+    border: none;
+}
+
+
+.split-frame.bottom .subtype {
+    top: -20px;
+    left: 50px;
+}
+
+
+
+
+.split-frame.bottom  .frame-text-wrapper {
+	top:45px;
+    padding: 20px 55px 20px 30px;
+}
+
+
+.split-frame .card-image {
+	border-top:5px gold solid;
+}
+
+.split-frame .frame-text-box {
+	height:360px;
+}
+
+.split .text {
+	padding-top: 20px;
+	/*
+	font-size:24px !important;
+	line-height: 26px !important;
+	*/
+}
+
+.split em {
+	display: none;
+}
+.split .info {
+    display:none;
+}
+
+.split .info p {
+	width:100%;
+	margin:0px;
+}
+
+.shadow-wrapper {
+	background:url('/card_layout/image_shadow.png') top center no-repeat;
+	background-size:cover;
+	position: absolute;
+	top:0px;
+	left:0px;
+	right:0px;
+	bottom:0px;
+	display:block;
+	z-index: 3;
+	pointer-events: none;
+}
+
+.double_faced_token .card-image,
+.token .card-image {
+	background-size:cover !important; 
+    height: 786px;
+}
+
+.double_faced_token .type-line,
+.token .type-line {
+	top:762px;
+}
+
+
+.tall-art .type-line {
+	top:960px;
+}
+
+.normal.tall-art .frame,
+.double_faced_token .frame,
+.token .frame {
+	top:720px;
+}
+
+.normal.tall-art .frame-text-box
+.double_faced_token .frame-text-box,
+.token .frame-text-box {
+	margin-top:5px;
+	height:175px;
+}
+
+.normal.tall-art .frame-text-wrapper,
+.double_faced_token .frame-text-wrapper,
+.token .frame-text-wrapper {
+	height:325px;	
+	padding-top:90px;
+}
+
+.normal.tall-art .shadow-wrapper,
+.double_faced_token .shadow-wrapper,
+.token .shadow-wrapper {
+	background:url('/card_layout/image_shadow_medium.png') top center  no-repeat;
+	background-size:cover;
+	
+}
+
+
+/* extended art for cards with no abilities */
+
+.normal.tall-art .card-image {
+	background-size:cover !important; 
+    height: 820px;
+}
+
+.normal.tall-art .type-line {
+	top:793px;
+}
+
+
+.tall-art .shadow-wrapper {
+	display:none;
+	/*
+	background:url('/card_layout/image_shadow_tall.png') top center no-repeat;
+	*/
+}
+
+
+.tall-art .card-image {
+	 background-size:1024px;
+	/* temp */
+	background-size:cover !important; 
+    height: 988px;
+}
+
+.double_faced_token.tall-art .type-line,
+.token.tall-art .type-line {
+	top:997px;
+    text-align: left;
+    width: 530px;
+    left: 63px;
+	font-size:1.2em;
+}
+
+.double_faced_token.tall-art .type,
+.token.tall-art .type {
+	border-radius:20px;
+	padding:14px 20px;
+	display:block;
+	position:absolute;
+	bottom:0px;
+	width:100%;
+}
+
+
+.basic-land.tall-art .card-header,
+.land.tall-art .frame {
+	display:none;
+}
+
+.land.tall-art .name {
+	width:100%;
+	text-align: center;
+}
+
+
+.land.tall-art .ms {
+    position: absolute;
+    left: -75px;
+    font-size: 1.25em;
+    line-height: 1.3em;
+    width: 1.75em;
+    height: 1.75em;
+    top: -5px;
+    border: 5px gold solid;
+}
+
+.land.tall-art .ms:last-of-type {
+	left:inherit;
+    right: -75px;
+}
+
+
+.double_faced_token.tall-art .frame,
+.token.tall-art .frame {
+	 z-index: 9; 
+	bottom:39px;
+}
+
+.double_faced_token.tall-art .frame-text-wrapper,
+.token.tall-art .frame-text-wrapper {
+	display: none;
+}
+
+.card-container {
+	background:url('/card_layout/bg_gold.jpg?999') center no-repeat;
+	background-size:cover;
+}
+
+.card-container.emblem {
+	background:url('/card_layout/bg_emblem.jpg?1') center no-repeat;
+	background-size:cover;
+}
+
+/*
+.preview-card .card-container {
+	
+	background:url('/card_layout/card-skeleton.png') center no-repeat;
+	background-size:cover;
+}
+	*/
+
+	.card-skeleton {
+		background:#ccc;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width:782px;
+		height:1076px;
+	}
+
+.card-container.snow .frame::before {
+	content:'';
+	display: block;
+	position: absolute;
+	top:-600px;
+	left:-30px;
+	right:-30px;
+	bottom:-40px;
+	background:url('/card_layout/bg_snow.png?98') center no-repeat;
+	background-size:cover;
+}
+
+.card-container.enchant .info::before {
+	content:'';
+	display: block;
+	position: absolute;
+    inset: -1080px 0px 0px;
+	background:url('/card_layout/bg_enchant.png?3456789') center no-repeat;
+	background-size:cover;
+}
+
+.card-container.color-w .info::before {
+	opacity:0.7;
+}
+
+.generic-card .type-line {
+	display:none;
+}
+
+.double_faced_token.card-container.enchant .info::before,
+.token.card-container.enchant .info::before {
+	top:-1060px;
+}
+
+.double_faced_token.card-container.snow .frame::before,
+.token.card-container.snow .frame::before {
+	top:-800px;
+}
+
+
+.color-plane {
+	background-image:url('/card_layout/bg_plane.jpg?2');
+}
+
+
+.color-snow-land {
+	background-image:url('/card_layout/bg_snow_land.jpg?2');
+}
+
+.color-artifact {
+	background-image:url('/card_layout/bg_artifact.jpg?12');
+}
+
+.color-colorless {
+	background-image:url('/card_layout/bg_colorless.jpg');
+}
+
+.color-u {
+	background-image:url('/card_layout/bg_u.jpg?99');
+}
+
+
+.color-b {
+	background-image:url('/card_layout/bg_b.jpg?99');
+}
+
+
+.color-r{
+	background-image:url('/card_layout/bg_r.jpg?99');
+}
+
+
+.color-g{
+	background-image:url('/card_layout/bg_g.jpg?99');
+}
+
+.color-w{
+	background-image:url('/card_layout/bg_w.jpg?99');
+}
+
+
+.color-gold{
+	
+	background-image:url('/card_layout/bg_gold.jpg?999');
+}
+
+.color-gr,
+.color-rg {
+	background-image:url('/card_layout/bg_gr.jpg?99');
+}
+.color-rb,
+.color-br {
+	background-image:url('/card_layout/bg_br.jpg?999');
+}
+
+.color-bu,
+.color-ub{
+	background-image:url('/card_layout/bg_bu.jpg?999');
+}
+
+.color-bg,
+.color-gb{
+	background-image:url('/card_layout/bg_bg.jpg?99');
+}
+
+.color-bw,
+.color-wb {
+	background-image:url('/card_layout/bg_bw.jpg?99');
+}
+
+
+.color-gu,
+.color-ug {
+	background-image:url('/card_layout/bg_gu.jpg?999');
+}
+
+
+.color-gw,
+.color-wg {
+	background-image:url('/card_layout/bg_gw.jpg?999');
+}
+
+
+
+.color-ru,
+.color-ur {
+	background-image:url('/card_layout/bg_ur.jpg?999');
+}
+
+.color-wu,
+.color-uw {
+	background-image:url('/card_layout/bg_uw.jpg?99');
+}
+
+.color-rw,
+.color-wr {
+	background-image:url('/card_layout/bg_wr.jpg?99');
+}

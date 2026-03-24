@@ -5,7 +5,7 @@ const { withFaust } = require("@faustwp/core");
  **/
 module.exports = withFaust({
   images: {
-    domains: ["faustexample.wpengine.com"],
+    domains: ["faustexample.wpengine.com","cards.scryfall.io","proxycards-ai-next.s3.us-east-2.amazonaws.com"],
   },
   trailingSlash: true,
 });
