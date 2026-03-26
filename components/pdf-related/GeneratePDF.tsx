@@ -4,7 +4,16 @@ import { Field, FieldDescription } from "../ui/field"
 import { Button } from "../ui/button"
 import { FieldGroup } from "../ui/field"
 import { useState } from 'react'
-import { prepareDeck, processBlock, finalizeDeck } from "../pdf-related/handleGeneratePDF"
+import type { PrepareResult, BlockResult, FinalResult } from "../pdf-related/handleGeneratePDF"
+
+async function pdfApi(body: object) {
+  const res = await fetch('/api/pdf/generate', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+  return res.json();
+}
 
 export function GeneratePDF({ deckID }: { deckID: string; }) {
   const [message, setMessage] = useState('');
@@ -15,7 +24,7 @@ export function GeneratePDF({ deckID }: { deckID: string; }) {
     setPending(true);
     setMessage('Preparing deck...');
 
-    const prep = await prepareDeck(deckID);
+    const prep: PrepareResult = await pdfApi({ action: 'prepare', deckID });
     if (prep.error) {
       setMessage(prep.error);
       setPending(false);
@@ -24,7 +33,7 @@ export function GeneratePDF({ deckID }: { deckID: string; }) {
 
     for (let i = 0; i < prep.chunks.length; i++) {
       setMessage(`Processing Sheet ${i + 1}/${prep.totalSheets}...`);
-      const result = await processBlock(deckID, i, prep.chunks[i]);
+      const result: BlockResult = await pdfApi({ action: 'processBlock', deckID, blockIndex: i, imagePaths: prep.chunks[i] });
       if (result.error) {
         setMessage(`Error on sheet ${i + 1}: ${result.error}`);
         setPending(false);
@@ -33,7 +42,7 @@ export function GeneratePDF({ deckID }: { deckID: string; }) {
     }
 
     setMessage('Finalizing PDF...');
-    const final = await finalizeDeck(deckID, prep.chunks.length);
+    const final: FinalResult = await pdfApi({ action: 'finalize', deckID, totalBlocks: prep.chunks.length });
     setMessage(final.message);
     setPending(false);
   };

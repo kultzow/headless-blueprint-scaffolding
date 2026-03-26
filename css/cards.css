@@ -699,13 +699,10 @@ background: rgba(0,0,0,0.5);
 	padding:100px 55px 5px 120px;
 }
 
-.class .frame  p:nth-of-type(1) {
-	display:none;
-}
 
 
-.class .frame  p:nth-of-type(3),
-.class .frame  p:nth-of-type(5)
+.class .frame  p:nth-of-type(2),
+.class .frame  p:nth-of-type(4)
 {
 	display:block;
 	position: absolute;
@@ -720,13 +717,13 @@ background: rgba(0,0,0,0.5);
 }
 
 
-.class .frame   p:nth-of-type(3) .ms-cost,
-.class .frame   p:nth-of-type(5) .ms-cost {
+.class .frame   p:nth-of-type(2) .ms-cost,
+.class .frame   p:nth-of-type(4) .ms-cost {
 	font-size:.9em;
 	margin-left:0px !important;
 }
 
-.class .frame  p:nth-of-type(4) {
+.class .frame  p:nth-of-type(3) {
 	min-height:60px;
 	border-top:1px #333 solid;
 	border-bottom:1px #333 solid;

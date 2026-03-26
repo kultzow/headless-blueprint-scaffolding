@@ -14,7 +14,7 @@ export function RemoveAllCards( {deckID, onEmpty}: {deckID:string; onEmpty?: () 
 
   const handleEmptyCards = async () => {
     await emptyDeck({deckID});
-    router.refresh();
+    //router.refresh();
     onEmpty?.();
   };
 

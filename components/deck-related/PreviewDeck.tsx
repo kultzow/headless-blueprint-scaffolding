@@ -1,6 +1,11 @@
 'use client'
 import { useState, useEffect, useRef, useMemo } from "react";
-import {getPrintableCard} from '@/components/card-related/CardFunctions'
+import { useAuth } from '@/hooks/useAuth';
+async function getPrintableCard(awsID: string, face: string): Promise<string> {
+  const res = await fetch(`/api/card/printable?awsID=${encodeURIComponent(awsID)}&face=${encodeURIComponent(face)}`);
+  const data = await res.json();
+  return data.url;
+}
 import { PreviewCard } from "@/components/card-related/PreviewCard";
 import { CardSkeleton } from "@/components/card-related/CardSkeleton";
 import { DeckMember } from '@/components/card-related/ScryfallDataTypes';
@@ -18,9 +23,11 @@ export function PreviewDeck({ deckID, appendQueue, onCardLoaded, onDeckSizeChang
   const [processedCount, setProcessedCount] = useState(0);
   const [adminOpenID, setAdminOpenID] = useState<string | null>(null);
 
-  const isAdmin = true;
+  const { viewer } = useAuth({ strategy: 'local', loginPageUrl: '/login', skip: true });
+  const isAdmin = viewer?.capabilities?.includes('administrator') ?? false;
 
   const modalArray = useMemo(() => ['modal_dfc','transform','meld'], []);
+
 
   // Process any new items added to appendQueue since last render
   const queue = appendQueue ?? [];
@@ -74,6 +81,7 @@ export function PreviewDeck({ deckID, appendQueue, onCardLoaded, onDeckSizeChang
   }, [revealedCount, cardList, modalArray]);
 
 
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
       {fronts.slice(0, revealedCount + 1).map((front, i) => {
@@ -81,7 +89,12 @@ export function PreviewDeck({ deckID, appendQueue, onCardLoaded, onDeckSizeChang
           return front && cardList[i] && (
           <div className={`justify-items-center layout-${cardList[i]?.layout} card-and-tools-wrapper${isModal ? ' md:col-span-2' : ''}`} key={cardList[i].awsID}>
             <div className="card-faces">
-            <div className="card-face front" onClick={() => isAdmin && setAdminOpenID(cardList[i].awsID)}>
+            <div
+              className="card-face front"
+              style={{ cursor: isAdmin ? 'pointer' : 'default' }}
+              onClick={() => isAdmin && setAdminOpenID(cardList[i].awsID)}
+              onContextMenu={isAdmin ? undefined : (e) => e.preventDefault()}
+            >
           <PreviewCard
             src={front}
             refreshSignal={versions[cardList[i].awsID] ?? 0}
@@ -94,7 +107,11 @@ export function PreviewDeck({ deckID, appendQueue, onCardLoaded, onDeckSizeChang
             }}
           />
           </div>
-          {isModal && (<div className="card-face back">
+          {isModal && (<div
+              className="card-face back"
+              style={{ cursor: isAdmin ? 'pointer' : 'default' }}
+              onContextMenu={isAdmin ? undefined : (e) => e.preventDefault()}
+            >
           <PreviewCard
             src={backs[i]!}
             refreshSignal={versions[cardList[i].awsID] ?? 0}

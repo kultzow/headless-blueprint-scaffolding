@@ -7,7 +7,15 @@ import { Textarea } from "@/components/ui/textarea";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { ScryfallCardData } from '@/components/card-related/ScryfallDataTypes';
 import { awsID } from "@/components/card-related/CardParts";
-import { fetchPrompt, previewCardArt, replacePreview, generatePrintableCard } from "@/components/card-related/CardFunctions";
+
+async function imageToolsApi(action: string, body: object) {
+  const res = await fetch('/api/card/image-tools', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ action, ...body }),
+  });
+  return res.json();
+}
 
 
 
@@ -39,15 +47,15 @@ if (cardData.card_faces?.[faceIndex]) {
 
 
   const handleGetPrompt = async () => {
-    const result = await fetchPrompt(cardData,face,sourceImageURL);
+    const { result } = await imageToolsApi('fetchPrompt', { cardData, face, sourceImageURL });
     setPrompt(result ?? 'Error fetching prompt');
     setPromptLoaded(true);
   };
 
   const handleGetArt = async () => {
-    const oldImage =  `https://proxycards-ai-next.s3.us-east-2.amazonaws.com/card_images/${myID}-${face}.jpg`
-    const newImage = await previewCardArt(prompt,myID,face,size);
-    confirmReplacement(oldImage,newImage);
+    const oldImage = `https://proxycards-ai-next.s3.us-east-2.amazonaws.com/card_images/${myID}-${face}.jpg`;
+    const { result: newImage } = await imageToolsApi('previewCardArt', { prompt, awsID: myID, face, size });
+    confirmReplacement(oldImage, newImage);
   };
 
   const confirmReplacement = (oldImage: string, newImage: string) => {
@@ -57,17 +65,17 @@ if (cardData.card_faces?.[faceIndex]) {
   };
 
   const handleReplacement = async () => {
-    await replacePreview(myID,face);
-    await generatePrintableCard(myID,face);
+    await imageToolsApi('replacePreview', { awsID: myID, face });
+    await imageToolsApi('generatePrintableCard', { awsID: myID, face });
     onRefresh?.();
     onClose?.();
   };
 
-  const handleRefreshPrint = async()=> {
-      await generatePrintableCard(myID,face);
-      onRefresh?.();
-      onClose?.();
-  }
+  const handleRefreshPrint = async () => {
+    await imageToolsApi('generatePrintableCard', { awsID: myID, face });
+    onRefresh?.();
+    onClose?.();
+  };
 
       return (
         <div className="admin-card-tools">

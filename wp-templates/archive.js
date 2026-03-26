@@ -71,7 +71,8 @@ export default function ArchivePage(props) {
   if (error) return <p>Error! {error.message}</p>;
 
   if (!data?.nodeByUri?.posts?.nodes.length) {
-    return <p>No posts have been published</p>;
+    console.log(data);
+    return <p>No posts have been published in archive.js</p>;
   }
 
   const siteData = siteDataQuery?.data?.generalSettings || {};

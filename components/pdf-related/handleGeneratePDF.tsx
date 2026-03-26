@@ -5,12 +5,7 @@ import { writeFile, readFile, unlink } from 'fs/promises';
 import { tmpdir } from 'os';
 import { join } from 'path';
 import { DeckMember } from '@/components/card-related/ScryfallDataTypes';
-import { db } from '@/lib/db';
-import type { RowDataPacket } from 'mysql2';
-
-interface DeckMeta extends RowDataPacket {
-  meta_value: string;
-}
+import { GetDeck } from '@/components/deck-related/DeckFunctions';
 
 export type PrepareResult = {
   error: string | null;
@@ -40,14 +35,9 @@ const s3 = new S3Client({
 export async function prepareDeck(deckID: string): Promise<PrepareResult> {
   const modalArray = ['modal_dfc', 'transform', 'meld'];
 
-  const [rows] = await db.execute<DeckMeta[]>(
-    `SELECT meta_value FROM wp_postmeta WHERE post_id = ? AND meta_key = 'wpcf-card-list' LIMIT 1`,
-    [deckID]
-  );
-  if (!rows.length || !rows[0].meta_value)
+  const list = await GetDeck(deckID);
+  if (!list.length)
     return { error: `Deck #${deckID} not found.`, chunks: [], totalSheets: 0, deckID };
-
-  const list: DeckMember[] = JSON.parse(rows[0].meta_value);
   const totalSheets = Math.ceil(list.length / 18);
 
   const token_tracker: DeckMember = { name: 'token_tracker', count: 1, awsID: '__token_tracker', layout: 'token' };

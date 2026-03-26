@@ -8,7 +8,10 @@ import { updateCardList, removeCardFromDeck } from "@/components/deck-related/De
 import { AlertDialog, AlertDialogTrigger,   AlertDialogCancel,   AlertDialogContent, 
   AlertDialogDescription,   AlertDialogHeader,   AlertDialogFooter,   AlertDialogTitle, AlertDialogAction} from "@/components/ui/alert-dialog";
 import { ImageTools } from "@/components/deck-related/ImageTools";
-import { getScryfallCardData } from "@/lib/api/scryfall";
+async function getScryfallCardData(identifier: string) {
+  const res = await fetch(`/api/card/scryfall?identifier=${encodeURIComponent(identifier)}`);
+  return res.json();
+}
 
 
 

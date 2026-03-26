@@ -1,5 +1,5 @@
 'use client'
-import { useState, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useMutation } from '@apollo/client/react';
 import { gql } from '@apollo/client';
 import { AddSingleCard } from '@/components/deck-related/AddSingleCard';
@@ -10,8 +10,7 @@ import { RemoveAllCards } from '@/components/deck-related/RemoveAllCards';
 import { IncludeTokens } from '@/components/deck-related/IncludeTokens';
 import { AddCustomToCart } from '@/components/deck-related/AddCustomToCart';
 import { GeneratePDF } from '@/components/pdf-related/GeneratePDF';
-import { ToggleTokens } from './ToggleTokens';
-import { MyCheckoutButton } from '../wp-related/CheckoutButton';
+import { ToggleTokens } from '@/components/deck-related/ToggleTokens';
 
 const UPDATE_PRODUCT_PRICE = gql`
   mutation UpdateProductPrice($productId: Int!, $price: Float!) {
@@ -22,7 +21,8 @@ const UPDATE_PRODUCT_PRICE = gql`
 `;
 
 
-export function DeckWrapper({ deckID }: { deckID: string }) {
+export function DeckWrapper({ deckID: deckIDProp }: { deckID: string }) {
+  const [deckID, setDeckID] = useState(() => /^\d+$/.test(deckIDProp) ? deckIDProp : '');
   const [appendQueue, setAppendQueue] = useState<DeckMember[]>([]);
   const [resetSignal, setResetSignal] = useState(0);
   const [includeTokens, setIncludeTokens] = useState(true);
@@ -31,6 +31,26 @@ export function DeckWrapper({ deckID }: { deckID: string }) {
   const [deckCost, setDeckCost] = useState(0);
   const pendingRef = useRef<Record<string, () => void>>({});
   const [updateProductPrice] = useMutation(UPDATE_PRODUCT_PRICE);
+
+  useEffect(() => {
+    if (/^\d+$/.test(deckIDProp)) {
+      setDeckID(String(deckIDProp));
+      return;
+    }
+    setDeckID('');
+    fetch(`${process.env.NEXT_PUBLIC_WORDPRESS_URL}/graphql`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        query: `query { product(id: "${deckIDProp}", idType: SLUG) { databaseId } }`,
+      }),
+    })
+      .then(r => r.json())
+      .then(json => {
+        const id = json.data?.product?.databaseId;
+        if (id) setDeckID(String(id));
+      });
+  }, [deckIDProp]);
 
   const isAdmin = true;
 
@@ -60,8 +80,12 @@ export function DeckWrapper({ deckID }: { deckID: string }) {
     setSheetCount(printCount);
     const myCost = cardCount ? printCount - discount : 0;
     setDeckCost(myCost);
-    updateProductPrice({ variables: { productId: parseInt(deckID), price: myCost } });
+    const productId = parseInt(deckID);
+    if (!isNaN(productId)) {
+      updateProductPrice({ variables: { productId, price: myCost } });
+    }
   }, [deckID, updateProductPrice]);
+
 
   return (
     <>
@@ -80,7 +104,6 @@ export function DeckWrapper({ deckID }: { deckID: string }) {
         <div className="order-first xl:order-last">
           <p>Deck Count: {deckSize}/{sheetCount} (180 max)</p>
           <p>Deck Cost: ${deckCost}</p>
-          <MyCheckoutButton />
           <AddCustomToCart  deckID={deckID} />
         </div>
       </div>
