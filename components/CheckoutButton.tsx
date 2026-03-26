@@ -27,7 +27,7 @@ export function MyCheckoutButton() {
 
   return ( 
   <Button asChild>
-    <Link  target="_blank" href={`${process.env.BACKEND_WORDPRESS_URL}/checkout/?session_id=${session}`}>
+    <Link  target="_blank" href={`${process.env.NEXT_PUBLIC_WORDPRESS_URL}/checkout/?session_id=${session}`}>
      {`Checkout ${session}`}
     </Link>
     </Button>
